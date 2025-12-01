@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "elevora-plugin",
-      "source": "."
+      "source": "./"
     }
   ]
 }
