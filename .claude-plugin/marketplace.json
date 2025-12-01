@@ -1,0 +1,13 @@
+{
+  "name": "elevora-marketplace",
+  "owner": {
+    "name": "Elevora Tech",
+    "url": "https://github.com/Elevora-Tech"
+  },
+  "plugins": [
+    {
+      "name": "elevora-plugin",
+      "source": "."
+    }
+  ]
+}
