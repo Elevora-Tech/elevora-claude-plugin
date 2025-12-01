@@ -9,7 +9,7 @@ Developer productivity tools for Claude Code - catch up on your work context, tr
 /plugin marketplace add Elevora-Tech/elevora-claude-plugin
 
 # Install the plugin
-/plugin install elevora-plugin
+/plugin install elevora-plugin@elevora-marketplace
 ```
 
 ## Commands
