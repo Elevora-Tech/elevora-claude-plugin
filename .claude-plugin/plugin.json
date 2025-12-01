@@ -2,11 +2,11 @@
   "name": "elevora-plugin",
   "version": "1.0.0",
   "description": "Developer productivity tools for Claude Code - catch up on your work context, track team activity, and automate BMAD epics.",
-  "author": "Elevora Tech",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Elevora-Tech/elevora-claude-plugin.git"
+  "author": {
+    "name": "Elevora Tech",
+    "url": "https://github.com/Elevora-Tech"
   },
+  "repository": "https://github.com/Elevora-Tech/elevora-claude-plugin",
   "license": "MIT",
   "keywords": [
     "productivity",
