@@ -16,14 +16,24 @@ Developer productivity tools for Claude Code - catch up on your work context, tr
 
 ### `/catchup`
 
-Catch up on where you left off since your last session. Analyzes your git timeline, work docs, and Jira context to show what changed and suggest next steps.
+Catch up on where you left off since your last session. Analyzes your git timeline, work docs, and issue tracker context to show what changed and suggest next steps.
 
 **Features:**
 - Analyzes recent git commits and extracts business-relevant changes
 - Detects page URLs from Next.js app routes
-- Integrates with Jira (if Atlassian MCP configured)
+- Integrates with **Jira**, **Linear**, or **GitHub Issues** (asks on first run)
 - Suggests logical next steps based on work patterns
 - Filters out styling/refactoring noise to focus on features
+
+**Issue Tracker Support:**
+
+| Provider | MCP Required | Key Pattern |
+|----------|-------------|-------------|
+| Jira | Atlassian MCP (`mcp__atlassian__*`) | `PROJ-123` |
+| Linear | Linear MCP (`linear_*`) | `ENG-456` |
+| GitHub Issues | GitHub MCP (`mcp__github__*`) | `#789` |
+
+On first run, you'll be asked which issue tracker you use. Your choice is saved to `.claude/catchup.config.json`.
 
 **Usage:**
 ```
@@ -66,6 +76,24 @@ Complete an entire BMAD epic autonomously. Runs through all stories from current
 /complete-epic 9
 ```
 
+### `/eda-architect`
+
+Inngest architecture expert — analyzes your codebase, plans workflow decomposition, recommends flow control patterns, and designs migration strategies from legacy queues to Inngest.
+
+**Features:**
+- Scans for existing Inngest functions and legacy queue systems (BullMQ, Celery, SQS, RabbitMQ, Temporal, Sidekiq)
+- Health checks Inngest functions for step hygiene, flow control fitness, and edge case violations
+- Recommends function decomposition (single vs. multiple coordinated functions)
+- Suggests flow control config (concurrency, throttle, rateLimit, debounce, idempotency, priority, batch)
+- Plans migrations from legacy queues with concept mappings and phased approach
+- Read-only analysis — never writes or modifies files
+
+**Usage:**
+```
+/eda-architect
+/eda-architect focus on the payments service
+```
+
 ## Skills
 
 ### `team-pulse`
@@ -75,6 +103,15 @@ Model-invoked skill for tracking developer activity. Claude will automatically u
 - "Show me what was done in the last 3 days"
 - "Who's been working on features this week?"
 
+### `eda-architect`
+
+Model-invoked skill for Inngest architecture analysis. Claude will automatically use this when you ask questions like:
+- "Should this be one Inngest function or multiple?"
+- "How should I structure this workflow in Inngest?"
+- "Migrate this BullMQ code to Inngest"
+- "Review my Inngest functions for issues"
+- "What flow control should I use here?"
+
 ## Configuration
 
 ### Catchup Configuration
@@ -83,10 +120,10 @@ Create `.claude/catchup.config.json` in your project root to customize:
 
 ```json
 {
-  "jira": {
-    "enabled": true,
-    "fetchEpics": true,
-    "parseTicketFromBranch": true
+  "issueTracker": {
+    "provider": "jira",
+    "fetchParent": true,
+    "parseKeyFromBranch": true
   },
   "workDocs": {
     "patterns": ["*_REMAINING_WORK.md", "*WORK_LOG.md"],
@@ -102,13 +139,25 @@ Create `.claude/catchup.config.json` in your project root to customize:
 }
 ```
 
+**Issue Tracker Options:**
+- `provider`: `"jira"` | `"linear"` | `"github"` | `"none"`
+- `fetchParent`: Fetch parent issues (epics in Jira, parent issues in Linear)
+- `parseKeyFromBranch`: Extract issue keys from git branch names
+
+**Changing Your Provider:**
+Edit the `issueTracker.provider` value in your config file, or delete the config to be prompted again.
+
 ## Requirements
 
 - Claude Code CLI
 - Git repository
 - GitHub CLI (`gh`) for PR status in team-pulse (optional)
-- Atlassian MCP for Jira integration in catchup (optional)
 - BMAD installation for complete-epic command
+
+**Issue Tracker MCPs (optional - for `/catchup`):**
+- [Atlassian MCP](https://github.com/atlassian/mcp-server-atlassian) for Jira
+- [Linear MCP](https://mcp.linear.app) for Linear (official)
+- [GitHub MCP](https://github.com/github/github-mcp-server) for GitHub Issues
 
 ## License
 
