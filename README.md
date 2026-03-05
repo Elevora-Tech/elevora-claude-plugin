@@ -1,6 +1,6 @@
 # Elevora Claude Plugin
 
-Developer productivity tools for Claude Code - catch up on your work context, track team activity, and automate BMAD epics.
+Developer productivity tools for Claude Code - catch up on your work context, track team activity, automate BMAD epics, and audit production readiness.
 
 ## Installation
 
@@ -94,6 +94,31 @@ Inngest architecture expert — analyzes your codebase, plans workflow decomposi
 /eda-architect focus on the payments service
 ```
 
+### `/ship-check`
+
+Production readiness audit — spawns 7 specialist agents to evaluate whether your web app is ready for real users to pay for and succeed with.
+
+**The 7 Specialists:**
+
+| Agent | Focus |
+|-------|-------|
+| Security Auditor | OWASP Top 10, auth, secrets, headers, input validation |
+| Feature Completeness Analyst | Routes, CRUD, error/loading/empty states, TODOs |
+| UX & Accessibility Inspector | WCAG 2.1 AA, keyboard nav, responsive, mobile, forms |
+| Infrastructure & DevOps Reviewer | CI/CD, logging, monitoring, env config, deployment |
+| Performance Analyst | Bundle size, images, caching, DB queries, Core Web Vitals |
+| Business & Launch Reviewer | SEO, analytics, legal, payments, email, social proof |
+| Product Experience Strategist | UVP, onboarding, first-run, differentiation, retention |
+
+**Verdict Scale:** Not Production Ready → MVP - Needs Work → MVP - Ready for Beta → Production Ready → Launch Ready - Ship It
+
+**Usage:**
+```
+/ship-check
+/ship-check security
+/ship-check product
+```
+
 ## Skills
 
 ### `team-pulse`
@@ -111,6 +136,15 @@ Model-invoked skill for Inngest architecture analysis. Claude will automatically
 - "Migrate this BullMQ code to Inngest"
 - "Review my Inngest functions for issues"
 - "What flow control should I use here?"
+
+### `ship-check`
+
+Model-invoked skill for production readiness auditing. Claude will automatically use this when you ask questions like:
+- "Is this app ready to ship?"
+- "Can we launch this?"
+- "What's blocking production readiness?"
+- "Do a pre-launch check"
+- "Is this ready for users?"
 
 ## Configuration
 

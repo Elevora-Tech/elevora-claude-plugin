@@ -1,7 +1,7 @@
 {
   "name": "elevora-plugin",
   "version": "1.0.0",
-  "description": "Developer productivity tools for Claude Code - catch up on your work context, track team activity, and automate BMAD epics.",
+  "description": "Developer productivity tools for Claude Code - catch up on your work context, track team activity, automate BMAD epics, and audit production readiness.",
   "author": {
     "name": "Elevora Tech",
     "url": "https://github.com/Elevora-Tech"
@@ -13,7 +13,10 @@
     "developer-tools",
     "git",
     "team-management",
-    "bmad"
+    "bmad",
+    "production-readiness",
+    "ship-check",
+    "audit"
   ],
   "commands": "./commands",
   "skills": "./skills"
