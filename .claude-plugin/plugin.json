@@ -1,6 +1,6 @@
 {
   "name": "elevora-plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Developer productivity tools for Claude Code - catch up on your work context, track team activity, automate BMAD epics, and audit production readiness.",
   "author": {
     "name": "Elevora Tech",
